@@ -8,8 +8,22 @@ using System.Threading.Tasks;
 
 namespace CSAdv2
 {
+    // 시험범위 : 처음부터 ~ 예외 + 인터페이스까지 / 메모장 GUI (간단한것)
     internal class Program
     {
+        class TestClass : IBasic
+        {
+            public int TestProperty {
+                get { return -1; }
+                set { int n = value; }
+            }
+
+            public int TestInstanceMethod()
+            {
+                return -1;
+            }
+        }
+
         class Dummy : IDisposable
         {
             public void Dispose()
@@ -58,6 +72,7 @@ namespace CSAdv2
                 Console.WriteLine("Hello~");
             }
 
+            IBasic basic = new TestClass();
         }
     }
 }
