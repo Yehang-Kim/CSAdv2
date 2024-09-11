@@ -10,6 +10,30 @@ namespace CSAdv2
 {
     internal class Program
     {
+        class Parent { }
+        class Child : Parent, IDisposable, IComparable<Child>, IBasic
+        {
+            public int TestProperty {
+                get { return -1; }
+                set { int n = value; }
+            }
+
+            public int CompareTo(Child other)
+            {
+                return 0;
+            }
+
+            public void Dispose()
+            {
+                Console.WriteLine("Child 객체의 Dispose() 호출");
+            }
+
+            public int TestInstanceMethod()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         class TestClass : IBasic
         {
             public int TestProperty {
@@ -72,6 +96,12 @@ namespace CSAdv2
             }
 
             IBasic basic = new TestClass();
+
+            Child child = new Child();
+            Parent childAsParent = child;
+            IDisposable childAsIDesposable = child;
+            IComparable<Child> childAsIComparable = child;
+            IBasic childAsIBasic = child;
         }
     }
 }
